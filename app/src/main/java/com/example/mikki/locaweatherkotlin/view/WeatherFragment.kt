@@ -1,8 +1,6 @@
 package com.example.mikki.locaweatherkotlin.view
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,11 +10,8 @@ import android.view.ViewGroup
 import com.example.mikki.locaweatherkotlin.R
 
 import com.example.mikki.locaweatherkotlin.adapter.WeatherAdapter
-import com.example.mikki.locaweatherkotlin.data.IRepository
 import com.example.mikki.locaweatherkotlin.data.model.ListItem
 import com.example.mikki.locaweatherkotlin.data.model.Location
-import com.example.mikki.locaweatherkotlin.data.model.Main
-import com.example.mikki.locaweatherkotlin.databinding.FragWeatherBinding
 import com.example.mikki.locaweatherkotlin.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.frag_weather.view.*
 import org.jetbrains.anko.AnkoLogger
@@ -30,13 +25,14 @@ class WeatherFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding:FragWeatherBinding
+        val view  = inflater.inflate(R.layout.frag_weather, container, false)
+        /*val binding:FragWeatherBinding
                 = DataBindingUtil.inflate(inflater,
             R.layout.frag_weather,container,false)
 
-        val view:View = binding.root
+        val view2:View = binding.root
 
-        binding.viewModel = viewModel
+        binding.viewModel = viewModel*/
 
         val adapter = WeatherAdapter()
 
@@ -49,13 +45,14 @@ class WeatherFragment: Fragment() {
             object :Observer<List<ListItem>>{
                 override fun onChanged(t: List<ListItem>?) {
                     adapter.setList(t!!)
+                    adapter.notifyDataSetChanged()
                     tag.warn { t.get(0).toString() }
                 }
             });
 
 
-        val mLayoutManager = LinearLayoutManager(context)
-
+        val mLayoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.HORIZONTAL, false)
         view.rv_weather_list.layoutManager = mLayoutManager
         view.rv_weather_list.adapter = adapter
 

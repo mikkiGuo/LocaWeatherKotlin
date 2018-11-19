@@ -1,50 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <TextView
-            android:text="Chicago"
+    <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_city_name" android:textStyle="bold"
-            android:textAlignment="center" android:textSize="30sp"
-            tools:layout_editor_absoluteY="24dp" tools:layout_editor_absoluteX="137dp"/>
-    <TextView
-            android:text="Cloudy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_category" android:textSize="24sp"
-            tools:layout_editor_absoluteY="72dp" tools:layout_editor_absoluteX="156dp" android:textAlignment="center"/>
-    <TextView
-            android:text="30"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="104dp"
-            tools:layout_editor_absoluteX="159dp" android:id="@+id/tv_temp" android:textSize="60sp"
-            android:textAlignment="center"/>
-    <TextView
-            android:text="tv_temp_min"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="208dp"
-            tools:layout_editor_absoluteX="16dp" android:id="@+id/tv_temp_min"/>
-    <TextView
-            android:text="tv_temp_max"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tv_temp_max"/>
-    <TextView
-            android:text="tv_humidity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tv_humidity"/>
-    <TextView
-            android:text="tv_pressure"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tv_pressure"/>
-    <TextView
-            android:text="tv_sealevel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tv_sealevel"/>
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_city_name"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_category"
+                    android:textSize="24sp"
+                    android:textAlignment="center"
+            />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_temp"
+                    android:textSize="60sp"
+                    android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_datetime"
+                android:padding="10dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_temp_min"
+                    android:padding="10dp"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_temp_max"
+                    android:padding="10dp"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_humidity"
+                    android:padding="10dp"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_pressure"
+                    android:padding="10dp"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_sealevel"
+                    android:padding="10dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 </LinearLayout>

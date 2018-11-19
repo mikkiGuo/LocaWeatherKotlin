@@ -1,6 +1,7 @@
 package com.example.mikki.locaweatherkotlin.data.remote
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import com.example.mikki.locaweatherkotlin.data.IRepository
 import com.example.mikki.locaweatherkotlin.data.model.ListItem
 import com.example.mikki.locaweatherkotlin.data.model.Location
@@ -11,6 +12,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.warn
 
 class RemoteDataSource : IRepository{
+
+
     private val tag = AnkoLogger("myTag")
 
     var disposable: Disposable? = null
@@ -20,32 +23,52 @@ class RemoteDataSource : IRepository{
 
     override fun loadWeather(location: Location): LiveData<List<ListItem>>? {
         //lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
-        var data:List<ListItem?>? = null
+        var data = MutableLiveData<List<ListItem?>>()
+
         disposable = apiService.loadWeather(location.lat,
             location.lon, "b6907d289e10d714a6e88b30761fae22")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    result -> tag.warn {
+                        result -> tag.warn {
                     result.list!!.get(0)!!.main.toString()}
                     tag.warn { result.list!!.get(0)!!.weather.toString() }
 
-                    data = result.list
-                    tag.warn { "data === " + data}
+                    data.value = result.list
+                    tag.warn { "data === " + data.value}
 
                 }, {
-                    error -> tag.warn { error.message.toString() }
+                        error -> tag.warn { error.message.toString() }
 
                 }
             )
-
+        tag.warn { "outside apiCall: " + data.value }
         return data as LiveData<List<ListItem>>?
     }
 
-    private fun getWeatherData(list:List<ListItem?>?) : List<ListItem?>?{
-        return list
-    }
+    /*override fun loadWeather(location: Location): LiveData<Weather>? {
+        var data = LiveData<Weather>()
+        disposable = apiService.loadWeather(location.lat,
+            location.lon, "b6907d289e10d714a6e88b30761fae22")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                        result -> tag.warn { result.list!!.get(0)!!.main.toString()}
+                    tag.warn { result.list!!.get(0)!!.weather.toString() }
+
+                    data = result
+                    tag.warn { "data === " + data.city}
+
+                }, {
+                        error -> tag.warn { error.message.toString() }
+
+                }
+            )
+        return data
+
+    }*/
 
 
 }

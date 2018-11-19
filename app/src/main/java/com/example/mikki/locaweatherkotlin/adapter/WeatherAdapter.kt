@@ -11,10 +11,14 @@ import kotlinx.android.synthetic.main.item_weather.view.*
 class WeatherAdapter:RecyclerView.Adapter<WeatherAdapter.ViewHolder>(){
 
     var weatherList = mutableListOf<ListItem>()
+    //var weatherInfo = Weather()
 
     fun setList(list: List<ListItem>){
         weatherList = list as MutableList<ListItem>
     }
+    /*fun setWeather(item:Weather){
+        weatherInfo = item
+    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,28 +26,48 @@ class WeatherAdapter:RecyclerView.Adapter<WeatherAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int {
+        //return weatherInfo.list!!.size
         return weatherList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var weatherItem = weatherList.get(position)
-        holder.main.text = weatherItem!!.weather!!.get(0)!!.main
 
-        var tempF:Int = ((9/5) * (weatherItem!!.main!!.temp!! - 273.15) + 32).toInt()
-        holder.temp.text = tempF.toString() + 0x00B0
-        var tempMinF:Int = ((9/5) * (weatherItem!!.main!!.tempMin!! - 273.15) + 32).toInt()
-        holder.tempMin.text = tempMinF.toString() + 0x00B0
-        var tempMaxF:Int = ((9/5) * (weatherItem!!.main!!.tempMax!! - 273.15) + 32).toInt()
-        holder.tempMax.text = tempMaxF.toString() + 0x00B0
+//        holder.city.text = weatherInfo.city!!.name
 
-        holder.humidity.text = weatherItem!!.main!!.humidity.toString()
-        holder.pressure.text = weatherItem!!.main!!.pressure.toString()
-        holder.seaLevel.text = weatherItem!!.main!!.seaLevel.toString()
+        val weatherItem = weatherList.get(position)
+
+        holder.main.text = weatherItem.weather!!.get(0)!!.main
+
+        val symbol = 0x00B0.toChar()
+
+        val tempF = ((9/5) * (weatherItem.main!!.temp!! - 273.15) + 32).toInt().toString()
+        val temperature = tempF + symbol
+        holder.temp.text = temperature
+
+        holder.dateTime.text = weatherItem.dtTxt
+
+        val tempMinF = ((9/5) * (weatherItem.main!!.tempMin!! - 273.15) + 32).toInt().toString()
+        val tempMinimum = "Lowest Temperature: " + tempMinF + symbol
+        holder.tempMin.text = tempMinimum
+
+        val tempMaxF:Int = ((9/5) * (weatherItem.main.tempMax!! - 273.15) + 32).toInt()
+        holder.tempMax.text = "Highest Temperature: " + tempMaxF.toString() + symbol
+
+        val temp1 = "Humidity: " + weatherItem.main.humidity.toString()
+        holder.humidity.text = temp1
+
+        val temp2 = "Pressure: " + weatherItem.main.pressure.toString()
+        holder.pressure.text = temp2
+
+        val temp3 = "Sea Level: " + weatherItem.main.seaLevel.toString()
+        holder.seaLevel.text = temp3
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        //var city = itemView.tv_city_name
         var main = itemView.tv_category
         var temp = itemView.tv_temp
+        var dateTime = itemView.tv_datetime
         var tempMin = itemView.tv_temp_min
         var tempMax = itemView.tv_temp_max
         var humidity = itemView.tv_humidity
