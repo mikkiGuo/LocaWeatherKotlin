@@ -50,7 +50,10 @@ class WeatherActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
         mGeoDataClient = Places.getGeoDataClient(this)
 
-        placesAdapter = PlacesAdapter(this, android.R.layout.simple_list_item_1, mGeoDataClient, null, BOUNDS_INDIA)
+        placesAdapter = PlacesAdapter(this,
+            android.R.layout.simple_list_item_1,
+            mGeoDataClient,
+            null, BOUNDS_INDIA)
         enter_place.setAdapter(placesAdapter)
         enter_place.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

@@ -22,7 +22,7 @@ interface APIService {
 
     companion object {
 
-        val BASEURL:String = "https://samples.openweathermap.org/data/2.5/"
+        val BASEURL:String = "http://api.openweathermap.org/data/2.5/"
 
         fun create(): APIService {
 

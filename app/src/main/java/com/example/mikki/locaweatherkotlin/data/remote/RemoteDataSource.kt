@@ -2,6 +2,7 @@ package com.example.mikki.locaweatherkotlin.data.remote
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import com.example.mikki.locaweatherkotlin.R
 import com.example.mikki.locaweatherkotlin.data.IRepository
 import com.example.mikki.locaweatherkotlin.data.model.ListItem
 import com.example.mikki.locaweatherkotlin.data.model.Location
@@ -22,11 +23,11 @@ class RemoteDataSource : IRepository{
     }
 
     override fun loadWeather(location: Location): LiveData<List<ListItem>>? {
-        //lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
+        var appid  = TODO("add id here")
         var data = MutableLiveData<List<ListItem?>>()
         tag.warn { "api call: lat: " + location.lat + " lon: " + location.lon }
         disposable = apiService.loadWeather(location.lat,
-            location.lon, "b6907d289e10d714a6e88b30761fae22")
+            location.lon, appid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

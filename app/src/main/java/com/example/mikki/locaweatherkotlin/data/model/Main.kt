@@ -13,9 +13,6 @@ data class Main(
 	@field:SerializedName("grnd_level")
 	val grndLevel: Double? = null,
 
-	@field:SerializedName("temp_kf")
-	val tempKf: Int? = null,
-
 	@field:SerializedName("humidity")
 	val humidity: Int? = null,
 

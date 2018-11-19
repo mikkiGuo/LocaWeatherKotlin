@@ -100,7 +100,9 @@ class PlacesAdapter(context: Context, resourceId: Int,
 
         // Submit the query to the autocomplete API and retrieve a PendingResult that will
         // contain the results when the query completes.
-        val results = geoDataClient.getAutocompletePredictions(constraint.toString(), bounds,
+        val results = geoDataClient
+            .getAutocompletePredictions(constraint.toString(),
+            bounds,
             mPlaceFilter)
 
         // This method should have been called off the main UI thread. Block and wait for at most
