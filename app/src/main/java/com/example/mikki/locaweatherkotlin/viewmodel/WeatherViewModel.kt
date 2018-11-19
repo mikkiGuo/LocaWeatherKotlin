@@ -22,10 +22,4 @@ class WeatherViewModel: ViewModel() {
         tag.warn {"view model : " + data.toString()  }
         return data
     }
-
-    /*fun loadWeather(location: Location):LiveData<Weather>?{
-        val data = repository.loadWeather(location)
-        tag.warn { "view model: " + data.toString() }
-        return data
-    }*/
 }

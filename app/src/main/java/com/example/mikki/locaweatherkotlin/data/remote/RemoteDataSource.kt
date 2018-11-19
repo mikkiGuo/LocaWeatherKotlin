@@ -24,7 +24,7 @@ class RemoteDataSource : IRepository{
     override fun loadWeather(location: Location): LiveData<List<ListItem>>? {
         //lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
         var data = MutableLiveData<List<ListItem?>>()
-
+        tag.warn { "api call: lat: " + location.lat + " lon: " + location.lon }
         disposable = apiService.loadWeather(location.lat,
             location.lon, "b6907d289e10d714a6e88b30761fae22")
             .subscribeOn(Schedulers.io())
@@ -46,29 +46,5 @@ class RemoteDataSource : IRepository{
         tag.warn { "outside apiCall: " + data.value }
         return data as LiveData<List<ListItem>>?
     }
-
-    /*override fun loadWeather(location: Location): LiveData<Weather>? {
-        var data = LiveData<Weather>()
-        disposable = apiService.loadWeather(location.lat,
-            location.lon, "b6907d289e10d714a6e88b30761fae22")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                        result -> tag.warn { result.list!!.get(0)!!.main.toString()}
-                    tag.warn { result.list!!.get(0)!!.weather.toString() }
-
-                    data = result
-                    tag.warn { "data === " + data.city}
-
-                }, {
-                        error -> tag.warn { error.message.toString() }
-
-                }
-            )
-        return data
-
-    }*/
-
 
 }

@@ -15,14 +15,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp">
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_city_name"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:textSize="30sp"
-            />
 
             <TextView
                     android:layout_width="match_parent"
